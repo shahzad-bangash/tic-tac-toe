@@ -1,0 +1,297 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: #222;
+  color: white;
+  font-family: sans-serif;
+  font-size: 16px;
+  text-align: center;
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+html, body {
+  background: linear-gradient(to bottom, #1f1f1f, #2a2a2a);
+}
+
+#board::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0,0,0,0.1));
+  pointer-events: none;
+  z-index: 1;
+}
+
+
+
+#wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  padding: 15px;
+  box-sizing: border-box;
+  max-width: 92vw;
+  max-height: none;
+}
+
+/* Main title */
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  max-width: 320px;
+  width: 100%;
+  text-align: center;
+}
+
+#status {
+  padding: 10px 20px;
+  font-size: 18px;
+  margin-top: 10px;
+  text-align: center;
+  /* optional */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-height: 40px; /* ensures consistent height */
+}
+
+
+/* Buttons */
+#menu button,
+#play-again,
+#home-button {
+  padding: 0.6rem 1.2rem;
+  margin: 0.3rem;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  background: #fff;
+  color: #000;
+  transition: background-color 0.3s ease;
+  max-width: 250px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#play-again {
+  background: #4caf50;
+  color: white;
+}
+
+#menu button:hover,
+#play-again:hover,
+#home-button:hover {
+  background-color: #45a049;
+  color: white;
+}
+
+/* Board container */
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 8px;
+  justify-content: center;
+  margin: 15px auto;
+  max-width: 280px;
+  width: 100%;
+}
+
+/* Cells */
+.cell {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+  background: white;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 8px;
+  user-select: none;
+  transition: background-color 0.2s ease;
+}
+
+.cell:hover {
+  background-color: #eee;
+}
+
+/* Responsive for mobile */
+@media (max-width: 480px) {
+   body{
+    font-size: 20px;
+   }
+  #wrapper {
+    max-height: 100vh;       /* Use full viewport height */
+    overflow-y: auto;        /* Allow vertical scroll if needed */
+    padding-bottom: 6px;    /* Give extra bottom space for buttons */
+    max-height: none;
+    padding: 0px;
+  }
+  h1 {
+    font-size: 1rem;
+    max-width: 70vw;
+  }
+
+   #status {
+    font-size: 1rem;  
+    max-width: 90vw;
+    margin-top: 2px;
+    min-height: 25px;
+    padding: 0px 0px;
+  }
+
+  #menu button,
+  #play-again,
+  #home-button {
+    font-size: 0.9rem;
+    padding: 1px 0px;
+    max-width: 50vw;
+  }
+
+  #board {
+    grid-template-columns: repeat(3, 6vw);  /* 3 cells each ~22vw wide */
+    gap: 4vw;                                /* gap scaled to vw */
+    max-width: 60vw;                         /* max width relative to viewport */
+    margin: 0 auto;
+    padding-left: 25px;
+    max-width: 270px;
+    padding: 0px;
+  }
+
+   .cell {
+    width: 60px;   /* responsive width */
+    height: 60px;  /* keep square */
+    font-size: 5vw; /* font-size scales with viewport */
+    border-radius: 8px;
+  }
+}
+
+/* Responsive for wide laptops - keep board compact */
+@media (min-width: 1400px) {
+  #board {
+    grid-template-columns: repeat(3, 90px);
+    gap: 10px;
+    max-width: 300px;
+  }
+
+  .cell {
+    width: 90px;
+    height: 90px;
+    font-size: 2.2rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+    max-width: 400px;
+  }
+
+  #status {
+    font-size: 1.1rem;
+    max-width: 400px;
+  }
+
+  #menu button,
+  #play-again,
+  #home-button {
+    font-size: 1.1rem;
+    max-width: 300px;
+  }
+}
+
+/* Board container */
+#board {
+  display: grid;
+  grid-template-columns: repeat(3, 80px);
+  gap: 10px;
+  justify-content: center;
+  margin: 15px auto;
+  max-width: 280px;
+  width: 100%;
+  background: #333;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid #555;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+#board:hover {
+  box-shadow: 0 0 15px rgba(76, 175, 80, 0.4);
+  transition: box-shadow 0.3s ease-in-out;
+}
+/* Cells */
+.cell {
+  width: 80px;
+  height: 80px;
+  font-size: 2rem;
+  background: #444;
+  color: #eee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  user-select: none;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  border: 2px solid transparent;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.cell:active {
+  box-shadow: 0 0 10px #4caf50;
+}
+
+.cell {
+  transition: transform 0.1s ease, background-color 0.25s ease;
+}
+.cell:active {
+  transform: scale(0.95);
+}
+.cell:hover {
+  background: #555;
+  color: #fff;
+  border-color: #4caf50; /* matches your green button */
+}
+h1 {
+  font-size: 2rem;
+  color: #00ffcc;
+  text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 20px #00ffcc;
+  animation: glow 1.5s infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc, 0 0 15px #00ffcc;
+  }
+  to {
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff;
+  }
+}
+#status {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Smooth fade effect */
+.thinking-effect {
+  animation: pulseText 1s infinite;
+  font-style: italic;
+  color: #ccc;
+}
+
+@keyframes pulseText {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+

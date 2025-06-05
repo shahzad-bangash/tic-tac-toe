@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+  <title>Tic Tac Toe</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+</head>
+<body>
+<div id="wrapper">
+  <h1>Tic Tac Toe</h1>
+  <div id="ai-thinking" class="thinking"><span id="dots"></span></div>
+
+
+   
+   
+
+  <div id="menu">
+    <button onclick="startGame('X')">Play as X</button>
+    <button onclick="startGame('O')">Play as O</button>
+  </div>
+
+  <div id="game" style="display: none;">
+    <h2 id="status"></h2>
+    <div id="board"></div>
+    <button id="play-again" onclick="playAgain()">Play Again</button>
+    <button id="home-button" onclick="goHome()" style="display:none;">Home</button>
+  </div>
+  
+
+  <audio id="click-sound" src="sounds/click.mp3"></audio>
+  <audio id="ai-click-sound" src="sounds/click2.mp3"></audio>
+  <audio id="game-over-sound" src="sounds/game_over.mp3"></audio>
+
+</div>
+  <script src="script.js"></script>
+</body>
+</html>

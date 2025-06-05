@@ -11,6 +11,9 @@ A responsive, single-player Tic-Tac-Toe game built with HTML, CSS, and JavaScrip
 - 🖼️ Responsive design for mobile and desktop
 - 💡 Dynamic status updates like "Your turn", "Computer is thinking...", "Computer wins!", etc.
 
+## Play Now
+[Play Online](https://shahzad-bangash.github.io/assets/projects/tictactoe/index.html)
+
 ## 📸 Screenshots
 
 <img src="images/startmenu.png" alt="Gameplay Screenshot" width="400">

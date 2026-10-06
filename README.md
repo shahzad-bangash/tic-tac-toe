@@ -4,10 +4,6 @@ A sleek, responsive, glassmorphic Tic-Tac-Toe game featuring an unbeatable AI po
 
 ---
 
-### 🌐 [**Play the Game Online &rarr;**](https://shahzad-bangash.github.io/assets/projects/tictactoe/index.html)
-
----
-
 ## 📸 Interface & Gameplay
 
 <div align="center">
@@ -64,15 +60,16 @@ A sleek, responsive, glassmorphic Tic-Tac-Toe game featuring an unbeatable AI po
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/shahzad-bangash/shahzad-bangash.github.io.git
+   git clone https://github.com/shahzad-bangash/tictactoe-ai.git
    ```
-2. **Navigate to the Tic-Tac-Toe directory:**
+2. **Navigate to the directory:**
    ```bash
-   cd shahzad-bangash.github.io/assets/projects/tictactoe
+   cd tictactoe-ai
    ```
-3. **Open `index.html`** in any modern web browser or start a local server:
+3. **Open `index.html`** directly in any modern web browser or launch a local server:
    ```bash
    python3 -m http.server 8000
    ```
+   Navigate to `http://localhost:8000/index.html`.
 
 ---

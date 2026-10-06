@@ -14,9 +14,9 @@
     content="Play modern Tic Tac Toe against an unbeatable Minimax AI opponent. Designed to match Shahzad Bangash's modern tech aesthetic.">
 
   <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
-  <link rel="icon" type="image/png" href="../../../favicon.png">
-  <link rel="apple-touch-icon" href="../../../favicon.png">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,13 +26,13 @@
     rel="stylesheet">
 
   <!-- Boxicons & Font Awesome -->
-  <link href="../../vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <!-- Cache-busted Stylesheet -->
   <link rel="stylesheet" href="style.css?v=2.8">
   <!-- Unified Theme Engine Stylesheet -->
-  <link rel="stylesheet" href="../../css/themes.css?v=1.6">
+  <link rel="stylesheet" href="css/themes.css?v=1.5">
 
   <!-- Instant Theme Attribute Setup (Avoid FOUT) -->
   <script>
@@ -65,12 +65,8 @@
   <!-- Main Game Container -->
   <main id="wrapper">
 
-    <!-- Top Navigation / Back to Portfolio -->
+    <!-- Header Controls -->
     <header class="game-header">
-      <a href="../../../index.html#projects" class="back-link" id="backToPortfolio" aria-label="Back to Portfolio">
-        <i class="bx bx-arrow-back"></i>
-        <span>Portfolio</span>
-      </a>
       <div class="difficulty-badge" id="difficultyBadge">
         <span class="pulse-dot"></span>
         <span id="badgeDifficultyText">Minimax &bull; Hard</span>
@@ -81,6 +77,9 @@
             <i class="bx bx-palette theme-palette-icon"></i>
           </button>
         </div>
+        <a href="https://github.com/shahzad-bangash/tic-tac-toe" target="_blank" class="icon-toggle-btn github-btn" aria-label="GitHub Repository" title="View Source on GitHub">
+          <i class="bx bxl-github"></i>
+        </a>
         <button class="icon-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound" title="Toggle Sound">
           <i class="bx bx-volume-full" id="soundIcon"></i>
         </button>
@@ -188,7 +187,7 @@
 
     <!-- Footer Credit -->
     <footer class="game-footer">
-      <span>Crafted by <a href="../../../index.html" class="footer-link">Shahzad Bangash</a></span>
+      <span>Crafted by <a href="https://shahzad-bangash.github.io" class="footer-link" target="_blank" rel="noopener noreferrer">Shahzad Bangash</a></span>
     </footer>
 
     <!-- Audio Elements -->
@@ -199,7 +198,7 @@
   </main>
 
   <!-- Theme Manager Engine -->
-  <script src="../../js/theme-manager.js?v=1.1"></script>
+  <script src="js/theme-manager.js?v=1.1"></script>
 
   <!-- Cache-busted Script -->
   <script src="script.js?v=2.6"></script>

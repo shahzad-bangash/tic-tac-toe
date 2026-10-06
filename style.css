@@ -158,12 +158,14 @@ body {
   gap: 1.25rem;
 }
 
-/* Header & Back Navigation */
+/* Header Navigation */
 .game-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  position: relative;
+  z-index: 100;
 }
 
 .header-actions {
@@ -253,6 +255,7 @@ body {
   -webkit-backdrop-filter: blur(12px);
   transition: var(--transition-fast);
   font-size: 1.15rem;
+  text-decoration: none;
 }
 
 .icon-toggle-btn:hover,
@@ -260,6 +263,12 @@ body {
   color: var(--accent-cyan);
   border-color: var(--border-accent);
   background: rgba(20, 34, 66, 0.85);
+  transform: translateY(-2px);
+}
+
+.github-btn:hover {
+  color: var(--accent-cyan);
+  box-shadow: 0 0 12px var(--accent-cyan-glow);
 }
 
 .icon-toggle-btn.muted,
@@ -280,6 +289,7 @@ body {
   padding: 2rem 1.75rem;
   box-shadow: var(--shadow-lg), var(--shadow-glow);
   position: relative;
+  z-index: 10;
   overflow: hidden;
   transition: border-color var(--transition-smooth);
 }

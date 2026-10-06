@@ -1,42 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#030712">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
 
+  <title>Tic Tac Toe | Minimax AI - Shahzad Bangash</title>
+  <meta name="description"
+    content="Play modern Tic Tac Toe against an unbeatable Minimax AI opponent. Designed to match Shahzad Bangash's modern tech aesthetic.">
 
-  <title>Tic Tac Toe</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="../../../favicon.ico">
+  <link rel="icon" type="image/png" href="../../../favicon.png">
+  <link rel="apple-touch-icon" href="../../../favicon.png">
 
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Boxicons & Font Awesome -->
+  <link href="../../vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Cache-busted Stylesheet -->
+  <link rel="stylesheet" href="style.css?v=2.8">
+  <!-- Unified Theme Engine Stylesheet -->
+  <link rel="stylesheet" href="../../css/themes.css?v=1.6">
+
+  <!-- Instant Theme Attribute Setup (Avoid FOUT) -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("shahzad_portfolio_theme");
+        var params = new URLSearchParams(window.location.search);
+        var t = saved || params.get("theme") || "dark-blue";
+        if (t === "cyber-dark" || t === "cyber-void") t = "dark-blue";
+        if (t === "clean-light") t = "light-blue";
+        if (t === "emerald-green" || t === "emerald-matrix") t = "green";
+        if (t === "neon-purple" || t === "neon-sakura") t = "purple";
+        if (t === "arctic-blue" || t === "arctic-frost") t = "red";
+        document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
 </head>
+
 <body>
-<div id="wrapper">
-  <h1>Tic Tac Toe</h1>
-  <div id="ai-thinking" class="thinking"><span id="dots"></span></div>
 
+  <!-- Ambient Dynamic Background Canvas -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
 
-   
-   
+  <!-- Ambient Glow Orbs -->
+  <div class="bg-glow-orb bg-glow-orb-1" aria-hidden="true"></div>
+  <div class="bg-glow-orb bg-glow-orb-2" aria-hidden="true"></div>
+  <div class="bg-glow-orb bg-glow-orb-3" aria-hidden="true"></div>
 
-  <div id="menu">
-    <button onclick="startGame('X')">Play as X</button>
-    <button onclick="startGame('O')">Play as O</button>
-  </div>
+  <!-- Main Game Container -->
+  <main id="wrapper">
 
-  <div id="game" style="display: none;">
-    <h2 id="status"></h2>
-    <div id="board"></div>
-    <button id="play-again" onclick="playAgain()">Play Again</button>
-    <button id="home-button" onclick="goHome()" style="display:none;">Home</button>
-  </div>
-  
+    <!-- Top Navigation / Back to Portfolio -->
+    <header class="game-header">
+      <a href="../../../index.html#projects" class="back-link" id="backToPortfolio" aria-label="Back to Portfolio">
+        <i class="bx bx-arrow-back"></i>
+        <span>Portfolio</span>
+      </a>
+      <div class="difficulty-badge" id="difficultyBadge">
+        <span class="pulse-dot"></span>
+        <span id="badgeDifficultyText">Minimax &bull; Hard</span>
+      </div>
+      <div class="header-actions">
+        <div class="theme-switcher-wrapper" data-align="right">
+          <button type="button" class="theme-trigger-btn" title="Click to switch theme" aria-label="Switch Theme">
+            <i class="bx bx-palette theme-palette-icon"></i>
+          </button>
+        </div>
+        <button class="icon-toggle-btn" id="soundToggleBtn" aria-label="Toggle Sound" title="Toggle Sound">
+          <i class="bx bx-volume-full" id="soundIcon"></i>
+        </button>
+      </div>
+    </header>
 
-  <audio id="click-sound" src="sounds/click.mp3"></audio>
-  <audio id="ai-click-sound" src="sounds/click2.mp3"></audio>
-  <audio id="game-over-sound" src="sounds/game_over.mp3"></audio>
+    <!-- Glassmorphic Card -->
+    <section class="game-card">
 
-</div>
-  <script src="script.js"></script>
+      <div class="title-area">
+        <h1 class="game-title">Tic-Tac-Toe</h1>
+        <p class="game-subtitle" id="gameSubtitle">Recursive Minimax Decision Tree Engine</p>
+      </div>
+
+      <!-- Persistent Scoreboard Strip with Reset Action -->
+      <div class="score-strip">
+        <div class="score-item">
+          <span class="score-label" id="score-label-1">Player X</span>
+          <span class="score-val" id="score-player">0</span>
+        </div>
+        <div class="score-divider"></div>
+        <div class="score-item">
+          <span class="score-label">Ties</span>
+          <span class="score-val" id="score-ties">0</span>
+        </div>
+        <div class="score-divider"></div>
+        <div class="score-item">
+          <span class="score-label" id="score-label-2">AI (O)</span>
+          <span class="score-val" id="score-ai">0</span>
+        </div>
+        <div class="score-divider"></div>
+        <button class="score-reset-btn" id="scoreResetBtn" onclick="resetScores()" title="Reset all scores">
+          <i class="bx bx-reset"></i>
+          <span>Reset</span>
+        </button>
+      </div>
+
+      <!-- Mode / Role Selection Menu -->
+      <div id="menu" class="mode-selection">
+
+        <!-- Game Mode Selector (vs AI vs 2 Players) -->
+        <div class="mode-control">
+          <span class="control-label">Game Mode:</span>
+          <div class="mode-btn-group" role="tablist">
+            <button class="mode-toggle-btn active" id="modeAiBtn" onclick="setGameMode('ai')">
+              <i class="bx bx-bot"></i> vs AI
+            </button>
+            <button class="mode-toggle-btn" id="modePvpBtn" onclick="setGameMode('pvp')">
+              <i class="bx bx-group"></i> 2 Players
+            </button>
+          </div>
+        </div>
+
+        <!-- Difficulty Selector Tabs (Visible in AI Mode) -->
+        <div class="difficulty-control" id="difficultySection">
+          <span class="control-label">AI Difficulty:</span>
+          <div class="diff-btn-group" role="tablist">
+            <button class="diff-btn" id="diffEasyBtn" onclick="setDifficulty('easy')">
+              <i class="bx bx-smile"></i> Easy
+            </button>
+            <button class="diff-btn active" id="diffHardBtn" onclick="setDifficulty('hard')">
+              <i class="bx bx-brain"></i> Hard (Minimax)
+            </button>
+          </div>
+        </div>
+
+        <p class="select-label" id="selectLabel">Choose your side to begin:</p>
+        <div class="symbol-selector" id="symbolSelector">
+          <button class="symbol-btn x-btn" id="chooseX" onclick="startGame('X')">
+            <span class="symbol-letter">X</span>
+            <span class="symbol-desc" id="descX">You First <i class="bx bx-user"></i></span>
+          </button>
+          <button class="symbol-btn o-btn" id="chooseO" onclick="startGame('O')">
+            <span class="symbol-letter">O</span>
+            <span class="symbol-desc" id="descO">AI First <i class="bx bx-chip"></i></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Game Active Screen -->
+      <div id="game" style="display: none;">
+        <!-- Status Bar -->
+        <div class="status-container">
+          <div id="status" class="status-bar" aria-live="polite">
+            <i class="bx bx-loader-alt spinner" id="thinking-spinner" style="display: none;"></i>
+            <span id="status-text">Your turn</span>
+          </div>
+        </div>
+
+        <!-- Tic Tac Toe Grid -->
+        <div id="board" class="board-grid" role="grid" aria-label="Tic Tac Toe Board"></div>
+
+        <!-- Action Controls -->
+        <div class="game-controls">
+          <button id="play-again" class="btn-action btn-primary" onclick="playAgain()">
+            <i class="bx bx-redo"></i> Play Again
+          </button>
+          <button id="home-button" class="btn-action btn-secondary" onclick="goHome()">
+            <i class="bx bx-cog"></i> Change Side
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Footer Credit -->
+    <footer class="game-footer">
+      <span>Crafted by <a href="../../../index.html" class="footer-link">Shahzad Bangash</a></span>
+    </footer>
+
+    <!-- Audio Elements -->
+    <audio id="click-sound" src="sounds/click.mp3" preload="auto"></audio>
+    <audio id="ai-click-sound" src="sounds/click2.mp3" preload="auto"></audio>
+    <audio id="game-over-sound" src="sounds/game_over.mp3" preload="auto"></audio>
+
+  </main>
+
+  <!-- Theme Manager Engine -->
+  <script src="../../js/theme-manager.js?v=1.1"></script>
+
+  <!-- Cache-busted Script -->
+  <script src="script.js?v=2.6"></script>
 </body>
+
 </html>
